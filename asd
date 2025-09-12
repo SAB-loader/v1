@@ -76,7 +76,7 @@ Window:Checkbox({
 				local sizeValue = player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Size")
 				if sizeValue and sizeValue.Value > 10000000 then
 					Teleport:FireServer("lobby")
-					task.wait(40)
+					task.wait(70)
 				end
 			end
 		end
