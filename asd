@@ -42,7 +42,7 @@ Window:InputText({
 })
 
 Window:Checkbox({
-	Value = false,
+	Value = true,
 	Label = "Check box",
 	Callback = function(self, Value)
 		running = Value
