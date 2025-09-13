@@ -42,43 +42,46 @@ Window:InputText({
 })
 
 Window:Checkbox({
-	Value = true,
+	Value = false,
 	Label = "Check box",
 	Callback = function(self, Value)
 		running = Value
 		if Value then
-			while running do
-				Teleport:FireServer("lobby")
-				task.wait(0.5)
-				local targetPosition = workspace.Lobby.Teleporter.Hitbox.Position
-				humanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0,3,0))
-				task.wait(1)
-
-				-- Forward sweep
-				for x = minX, maxX, stepX do
-					if not running then break end
-					for _, z in ipairs(zValues) do
-						if not running then break end
-						tweenTo(Vector3.new(x, fixedY, z))
-					end
-				end
-
-				-- Backward sweep
-				for x = maxX, minX, -stepX do
-					if not running then break end
-					for _, z in ipairs(zValues) do
-						if not running then break end
-						tweenTo(Vector3.new(x, fixedY, z))
-					end
-				end
-
-				-- Check Size after full sweep
-				local sizeValue = player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Size")
-				if sizeValue and sizeValue.Value > 10000000 then
+			task.spawn(function()
+				while running do
+					-- teleport to lobby each loop
 					Teleport:FireServer("lobby")
-					task.wait(70)
+					task.wait(0.5)
+					local targetPosition = workspace.Lobby.Teleporter.Hitbox.Position
+					humanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0,3,0))
+					task.wait(1)
+
+					-- Forward sweep
+					for x = minX, maxX, stepX do
+						if not running then break end
+						for _, z in ipairs(zValues) do
+							if not running then break end
+							tweenTo(Vector3.new(x, fixedY, z))
+						end
+					end
+
+					-- Backward sweep
+					for x = maxX, minX, -stepX do
+						if not running then break end
+						for _, z in ipairs(zValues) do
+							if not running then break end
+							tweenTo(Vector3.new(x, fixedY, z))
+						end
+					end
+
+					-- Size check after a full sweep
+					local sizeValue = player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Size")
+					if sizeValue and sizeValue.Value > 10000000 then
+						Teleport:FireServer("lobby")
+						task.wait(40)
+					end
 				end
-			end
+			end)
 		end
 	end
 })
