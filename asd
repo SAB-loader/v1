@@ -1,7 +1,7 @@
 local ReGui = loadstring(game:HttpGet('https://raw.githubusercontent.com/depthso/Dear-ReGui/refs/heads/main/ReGui.lua'))()
 
 local Window = ReGui:Window({
-	Title = "Hello world!",
+	Title = "Hello world! v1",
 	Size = UDim2.fromOffset(300, 200)
 })
 
@@ -32,7 +32,7 @@ end
 
 Window:InputText({
 	Label = "Speed (studs/sec)",
-	Value = "50",
+	Value = "65",
 	Callback = function(self, Value)
 		local num = tonumber(Value)
 		if num and num > 0 then
