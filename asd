@@ -16,7 +16,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local running = false
 local speed = 50
-local stepX = 12
+local stepX = 17
 local fixedY = -7.3
 local minX, maxX = -187, 187
 local zValues = {-190, 190}
