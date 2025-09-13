@@ -1,7 +1,7 @@
 local ReGui = loadstring(game:HttpGet("https://raw.githubusercontent.com/depthso/Dear-ReGui/refs/heads/main/ReGui.lua"))()
 
 local Window = ReGui:Window({
-	Title = "Sweep Bot v1.02",
+	Title = "Sweep Bot v1.03",
 	Size = UDim2.fromOffset(300, 200)
 })
 
@@ -47,7 +47,7 @@ local function checkAndTeleport()
 			Teleport:FireServer("lobby")
 			task.wait(0.5)
 			humanoidRootPart.CFrame = CFrame.new(workspace.Lobby.Teleporter.Hitbox.Position + Vector3.new(0,3,0))
-			task.wait(80) -- wait 60s before resuming
+			task.wait(100) -- wait 60s before resuming
 		end
 	end
 end
